@@ -210,18 +210,6 @@
     
 })(jQuery);
 
-document.addEventListener('DOMContentLoaded', function () {
-    var form = document.getElementById('login-form');
-    form.addEventListener('submit', function (e) {
-        e.preventDefault(); // Evita que el formulario se envíe si hay errores
-        if ($(form).parsley().isValid()) {
-            // Si es válido, puedes enviar los datos
-            console.log('Formulario válido, enviando datos...');
-        } else {
-            console.log('Errores en el formulario.');
-        }
-    });
-});
 
 function togglePasswordVisibility() {
     var passwordInput = document.getElementById("floatingPassword");
@@ -235,4 +223,6 @@ function togglePasswordVisibility() {
 function cargarContenido(url) {
     $("#cambio").load(url); // AJAX para cargar el contenido
 }
+
+
 

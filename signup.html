@@ -83,9 +83,22 @@
                                 </div>
                                 <a href="">¿Has olvidado tu contraseña?</a>
                             </div>
-                            <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Registrarse</button>
+                            <button type="submit" class="btn btn-primary py-3 w-100 mb-4" id="login-button">Registrarse</button>
                             <p class="text-center mb-0">¿Ya tienes una cuenta? <a href="signin.html">Iniciar sesión</a></p>
                         </form>
+                        <script>
+                            document.getElementById('login-form').addEventListener('submit', function (e) {
+                                e.preventDefault(); // Evita que se envíe el formulario directamente
+                        
+                                if ($(this).parsley().isValid()) {
+                                    // Redirige a index.html si las validaciones son exitosas
+                                    window.location.href = 'index.html';
+                                } else {
+                                    // Opcional: mensaje de error o notificación al usuario
+                                    alert('Termine de rellanar los datos, o corrija los errores');
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
