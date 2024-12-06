@@ -224,5 +224,49 @@ function cargarContenido(url) {
     $("#cambio").load(url); // AJAX para cargar el contenido
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Código para manejar el formulario de registro
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Evita que se envíe el formulario directamente
+
+            if ($(this).parsley().isValid()) {
+                // Captura los datos del formulario
+                const formData = new FormData(this);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+
+                // Almacena los datos en localStorage
+                localStorage.setItem('signupData', JSON.stringify(data));
+
+                // Redirige a index.html si las validaciones son exitosas
+                window.location.href = 'index.html';
+            } else {
+                // Opcional: mensaje de error o notificación al usuario
+                alert('Termine de rellenar los datos, o corrija los errores');
+            }
+        });
+    }
+
+    // Código para mostrar los datos en la página principal
+    const signupData = JSON.parse(localStorage.getItem('signupData'));
+    if (signupData) {
+        const usernameElement = document.getElementById('username');
+        const roleElement = document.getElementById('role');
+        const profileImageElement = document.querySelector('.rounded-circle');
+
+        if (usernameElement && roleElement && profileImageElement) {
+            usernameElement.textContent = signupData['floatingText'] || 'Usuario';
+            roleElement.textContent = 'User'; // Assuming the role is 'User' for all registered users
+            profileImageElement.src = signupData['floatingFile'] || profileImageElement.src;
+        }
+    }
+});
+
+
+
 
 
